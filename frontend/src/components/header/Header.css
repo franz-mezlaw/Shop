@@ -1,0 +1,26 @@
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgb(219, 224, 229);
+    padding: 2rem 1rem;
+}
+
+.nav,
+.icons {
+    display: flex;
+    gap: 2rem;
+}
+
+header section a {
+    text-decoration: none;
+    color: black;
+}
+
+header h1 {
+    font-size: 1.3rem;
+}
+
+header h1 span {
+    color: #daa138;
+}
