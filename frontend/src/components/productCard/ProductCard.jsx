@@ -7,6 +7,7 @@ function ProductCard(props) {
         <Link to={`/detail/${props.id}`} className="productCard">
             <img src={props.img} />
             <p className="product_title">{props.title}</p>
+            <p>{props.size}</p>
             <p>{props.description}</p>
             <div >
                 <p>{`${props.price} €`}</p>

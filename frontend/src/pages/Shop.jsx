@@ -1,13 +1,20 @@
+import { useContext } from "react";
 import { useEffect } from "react";
 import { useState } from "react";
+import { useParams } from "react-router-dom";
+import { ThemeContext } from "../App";
 import filter from "../assets/img/filter.svg"
 import ProductCard from "../components/productCard/ProductCard";
+import Detail from "./Detail";
+
 
 
 function Shop() {
-
+    const theme = useContext(ThemeContext);
     const [newData, setNewData] = useState();
     const [inputValue, setInputValue] = useState();
+    console.log(theme);
+
     //! Fetch einbauen und an ProductCard übergeben
     // useEffect(() => {
     //     async function getData() {
@@ -21,11 +28,15 @@ function Shop() {
     // }, [])
 
     useEffect(() => {
+        console.log("im useeffect")
         fetch(`http://localhost:9999/api/moebel`)
             .then(res => res.json())
-            .then(data => setNewData(data))
+            .then(data => {
+                console.log(data)
+                setNewData(data)
+            })
             .catch(err => console.log(err))
-    }, []) // refresh ist jetzt eine dependency vom useEffect, wenn refresh ein neuen wert bekommt wird useEffect ausgeführt
+    }, [theme.updatePage])
 
 
 
@@ -73,7 +84,7 @@ function Shop() {
                             key={index}
                             title={object.title}
                             price={object.price}
-                            category={object.category}
+                            // description={object.description}
                             img={object.image}
                             id={object._id}
                         />
@@ -87,7 +98,7 @@ function Shop() {
                             key={index}
                             title={object.title}
                             price={object.price}
-                            category={object.category}
+                            // description={object.description}
                             img={object.image}
                             id={object._id}
                         />

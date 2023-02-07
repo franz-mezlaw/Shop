@@ -4,9 +4,10 @@ import Formular from "../components/formular/Formular";
 
 
 
+
 const Admin = () => {
 
-    const [moebel, setMoebel] = useState([]) // hier stehen alle unsere Freunde drin
+    const [moebel, setMoebel] = useState([]) // hier stehen alle unsere Möbel drin
     const [refresh, setRefresh] = useState(true) // wir nutzen diesenm state um bei einem neuen Freund ein fetch zu triggern und so die Seite zu aktuallisieren mit neuen Daten
 
 
@@ -19,15 +20,18 @@ const Admin = () => {
     console.log(moebel);
 
 
+
+
     //Hier werden die Hinzugefügten Daten auch dargestellt
     return (
         <>
             <Formular setRefresh={setRefresh} />
             <div className="eintrag">
-                {moebel.map((freund, index) => {
+                {moebel.map((moebel, index) => {
+                    console.log(moebel);
                     return (
                         <div key={index}>
-                            <p >{`${index + 1} ${freund.title} ${freund.size}`}</p>
+                            <p >{`${index + 1} ${moebel.title} ${moebel.size} ${moebel.description} ${moebel.price}`}</p>
                         </div>
                     )
                 })}

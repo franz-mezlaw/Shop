@@ -48,19 +48,27 @@ app.post('/api/moebel', upload.none(), (req, res) => {
         //Fügt das freund Objekt in die 'freundesliste' collection.
         .then(db => db.collection('meineMoebel').insertOne(moebel))
         .then(ark => res.status(200).json(ark))
-
-
 })
 
 
 app.put('/api/moebel', (req, res) => {
 
 })
-app.delete('/api/moebel/:_id', (req, res) => {
-    const params = req.params.id
+
+
+app.delete('/api/moebel/:id', (req, res) => {
+    //Hole die die Info id aus der URL
+    const params = req.params.id;
+    console.log(params);
     getDb()
-        .then(db => db.collection('moebel').deleteOne({ "_id": ObjectId(params) }))
-        .then(result => res.status(200))
+        .then(db => db.collection('meineMoebel').deleteOne({ "_id": ObjectId(params) }))
+        .then(result => {
+            if (result.deleteCount === 0) {
+                res.status(400).json({ message: "Objekt nicht gefunden" });
+            } else {
+                res.status(200).json({ message: "Objekt erfolgreich gelösch!" });
+            }
+        })
         .catch(err => console.log(err))
 })
 
