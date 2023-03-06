@@ -51,8 +51,22 @@ app.post('/api/moebel', upload.none(), (req, res) => {
 })
 
 
-app.put('/api/moebel', (req, res) => {
 
+app.put('/api/moebel/:id', async (req, res) => {
+    const params = req.params.id;
+    const item = req.body
+    console.log("The Item:", item);
+    const id = req.body.id
+    delete item.id // ich lösche die id proberty aus meinem object
+
+    const db = await getDb() //Verbindung zur Datenbank aufbauen
+    //Das Objekt mit der ID aus der URL mit dem neuen Inhalt von item ändern
+    const result = await db.collection("meineMoebel").updateOne(
+        { _id: new ObjectId(params) }, 
+        { $set: { ...item } }
+        )
+
+    res.json(result)
 })
 
 

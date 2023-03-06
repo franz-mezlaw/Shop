@@ -1,17 +1,15 @@
-import './App.css';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Home from './pages/Home';
-import Header from './components/header/Header';
-import Admin from './pages/Admin';
-import Shop from './pages/Shop';
-import Basket from './pages/Basket';
-import Detail from './pages/Detail';
-import About from './pages/About';
-import { createContext, useState } from 'react';
+import "./App.css";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Home from "./pages/Home";
+import Header from "./components/header/Header";
+import Admin from "./pages/Admin";
+import Shop from "./pages/Shop";
+import Basket from "./pages/Basket";
+import Detail from "./pages/Detail";
+import About from "./pages/About";
+import { createContext, useState } from "react";
 
-//Kevin
 export const ThemeContext = createContext();
-
 
 function App() {
   const [updatePage, setUpdatePage] = useState(false);
