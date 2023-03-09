@@ -28,7 +28,7 @@ function Shop() {
 
     useEffect(() => {
         console.log("im useeffect")
-        fetch(`http://localhost:9999/api/moebel`)
+        fetch(`${REACT_APP_BACKEND_URL}/api/moebel`)
             .then(res => res.json())
             .then(data => {
                 console.log(data)

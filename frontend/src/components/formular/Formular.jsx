@@ -14,7 +14,7 @@ function Formular(props) {
   // Add the base64-encoded image to the FormData object
   form.append("image", base64);
         //Hier wird nun gefetched mit einem POST req an den Server
-        fetch('http://localhost:9999/api/moebel', {
+        fetch(`${REACT_APP_BACKEND_URL}/api/moebel`, {
             method: 'POST',
             body: form
         })

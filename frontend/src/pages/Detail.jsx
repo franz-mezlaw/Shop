@@ -12,10 +12,10 @@ function Detail() {
   const params = useParams(); //Hole die ID von der URL
   let theID = params.id; //Speichere diese in die Variable theID
   console.log(theID);
-
+  
   useEffect(() => {
     async function getData() {
-      const data = await fetch(`http://localhost:9999/api/moebel/${theID}`);
+      const data = await fetch(`${REACT_APP_BACKEND_URL}/api/moebel/${theID}`);
       const dataJS = await data.json();
       setNewData(dataJS);
     }
@@ -35,7 +35,7 @@ function Detail() {
     event.preventDefault();
     console.log("Delete Knopf geht");
     console.log(theme.updatePage);
-    fetch(`http://localhost:9999/api/moebel/${theID}`, {
+    fetch(`${REACT_APP_BACKEND_URL}/api/moebel/${theID}`, {
       method: "DELETE",
     }).then((response) => {
       //Hole die Methode aus dem Context
@@ -85,7 +85,7 @@ function Detail() {
     }
 
     //Schickt die aktualisierten Daten an die API
-    fetch(`http://localhost:9999/api/moebel/${theID}`, {
+    fetch(`${REACT_APP_BACKEND_URL}/api/moebel/${theID}`, {
       method: "put",
       headers: {
         "Content-Type": "application/json",
