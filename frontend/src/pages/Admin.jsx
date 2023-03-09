@@ -12,7 +12,7 @@ const Admin = () => {
 
 
     useEffect(() => {
-        fetch(`${REACT_APP_BACKEND_URL}/api/moebel`)
+        fetch(`${BACKEND}/api/moebel`)
             .then(res => res.json())
             .then(data => setMoebel(data))
             .catch(err => console.log(err))
