@@ -20,7 +20,7 @@ function Detail() {
       setNewData(dataJS);
     }
     getData();
-  }, [theme.updatePage]);
+  }, [theme.updatePage,theID]);
 
   // //TODO---  Objekt mit der ID aus URL finden
   // let foundRightObject = newData?.find((object) => {

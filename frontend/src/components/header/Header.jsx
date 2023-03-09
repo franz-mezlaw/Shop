@@ -14,8 +14,8 @@ function Header() {
                 <Link to="/admin"> <p>Admin</p> </Link>
             </section>
             <section className="icons">
-                <img src={`${person}`} />
-                <img src={`${einkaufswagen}`} />
+                <img alt="person_pic" src={`${person}`} />
+                <img alt="einkaufswagen_pic" src={`${einkaufswagen}`} />
             </section>
         </header>
     );

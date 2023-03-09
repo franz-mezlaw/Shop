@@ -57,7 +57,7 @@ function Formular(props) {
             <input type="description" name="description" placeholder="description" />
             <input type="submit" value="Publish" />
             <input type="file" name="image" onChange={picConverter}/>
-            <img src={base64}/>
+            <img alt="product_pic" src={base64}/>
         </form>
     )
 }

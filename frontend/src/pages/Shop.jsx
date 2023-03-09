@@ -1,11 +1,10 @@
 import { useContext } from "react";
 import { useEffect } from "react";
 import { useState } from "react";
-import { useParams } from "react-router-dom";
 import { ThemeContext } from "../App";
 import filter from "../assets/img/filter.svg"
 import ProductCard from "../components/productCard/ProductCard";
-import Detail from "./Detail";
+
 
 
 
@@ -61,7 +60,7 @@ function Shop() {
         <main className="main_shop">
             <form>
                 <div>
-                    <img src={filter} />
+                    <img alt="filter_img" src={filter} />
                 </div>
                 {/* //! Daten aus Input in inputValue speichern */}
                 <input
