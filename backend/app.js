@@ -10,15 +10,20 @@ import { ObjectId } from 'mongodb';
 const app = express();
 //Den Port holen wir aus der .env-Datei
 const PORT = process.env.PORT;
+//Man braucht multer damit die FormData Daten aus dem Frontend ohne Probleme verwendet werden können
+const upload = multer({ dest: "./public" });
+
+
 //Der Browser blockt alle Adressen die auf den Server zugreifen wollen außer sich selbst. Mit Cors kann man das beheben
 app.use(cors());
 //Fügt die Middleware hinzu, die verwendet wird, um den Request-Body in ein JSON-Objekt zu parsen.
-app.use(express.json())
-//Man braucht multer damit die FormData Daten aus dem Frontend ohne Probleme verwendet werden können
-const upload = multer();
+app.use(express.json());
+//Hat etwas mit Multer und dem Bild zutun
+app.use('/public', express.static('./public'));
 
 
-// -------- Alle Objekte bekommen -------------
+
+//! -------- Alle Objekte bekommen -------------
 app.get('/api/moebel', (req, res) => {
     //Ruft die Funktion "getDb" auf, um eine Verbindung zur MongoDB-Datenbank herzustellen
     getDb()
@@ -30,7 +35,7 @@ app.get('/api/moebel', (req, res) => {
         .then(array => res.status(200).json(array))
 })
 
-//------------Ein Objekt bekommen ---------------
+//!------------Ein Objekt bekommen ---------------
 app.get('/api/moebel/:id', (req, res) => {
     //Ruft die Funktion "getDb" auf, um eine Verbindung zur MongoDB-Datenbank herzustellen
     getDb()
@@ -40,8 +45,9 @@ app.get('/api/moebel/:id', (req, res) => {
         .then(item => item ? res.status(200).json(item) : res.status(404).json({ message: 'Objekt nicht gefunden' }))
 });
 
+//!----Neuen Eintrag hinzufügen (Mit Bild) ------------
+app.post('/api/moebel', upload.single("image"), (req, res) => {
 
-app.post('/api/moebel', upload.none(), (req, res) => {
     const moebel = req.body;
     console.log(moebel);
     getDb()
@@ -50,8 +56,7 @@ app.post('/api/moebel', upload.none(), (req, res) => {
         .then(ark => res.status(200).json(ark))
 })
 
-
-
+//!------Eintrag verändern-------------------
 app.put('/api/moebel/:id', async (req, res) => {
     const params = req.params.id;
     const item = req.body
@@ -69,7 +74,7 @@ app.put('/api/moebel/:id', async (req, res) => {
     res.json(result)
 })
 
-
+//!------Eintrag löschen-------------------
 app.delete('/api/moebel/:id', (req, res) => {
     //Hole die die Info id aus der URL
     const params = req.params.id;
